@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 
 namespace CrudAPI
 {
@@ -33,7 +34,26 @@ namespace CrudAPI
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v2",
+                    Title = "Crud API",
+                    Description = "A simple example ASP.NET Core Web API", 
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Jhoel Narvaez",
+                        Email = "n/a",
+                        Url = new Uri("https://twitter.com/spboyer"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
